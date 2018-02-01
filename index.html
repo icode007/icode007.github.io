@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/tags- base64图片/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/03/tags- base64图片/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YunLong Li">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/18/tags- base64图片/" itemprop="url">使用base64格式图片制作icon</a></h1>
+                <a class="post-title-link" href="/2017/04/03/tags- base64图片/" itemprop="url">使用base64格式图片制作icon</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T12:00:00+08:00">
-                2017-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-03T12:00:00+08:00">
+                2017-04-03
               </time>
             
 
@@ -375,7 +375,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/tags- html 响应式图片/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/tags- css 响应式项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YunLong Li">
@@ -394,7 +394,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/04/tags- html 响应式图片/" itemprop="url">响应式图片解决方案</a></h1>
+                <a class="post-title-link" href="/2017/03/27/tags- css 响应式项目/" itemprop="url">使用媒体查询构建响应式网站</a></h1>
         
 
         <div class="post-meta">
@@ -406,139 +406,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T12:00:00+08:00">
-                2017-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="响应式图片解决方案"><a href="#响应式图片解决方案" class="headerlink" title="响应式图片解决方案"></a>响应式图片解决方案</h1><h2 id="使用响应式图片技术的原因"><a href="#使用响应式图片技术的原因" class="headerlink" title="使用响应式图片技术的原因"></a>使用响应式图片技术的原因</h2><p>随着响应式开发的流行，一套开发可以适应pc，平板，手机等多种终端设备，但是比如当我们在手机上依然使用pc端适用的高分辨率图的话，带来的流量的消耗是很多的，而且图片在小屏幕上缩小显示，会变得不清晰。如果使用小图的话，在高分辨率设备上又变得模糊。</p>
-<p>另外，苹果的ritina屏幕的像素比为2，这样一张图片在像素比为1的屏幕上正常显示，在ritina设备上显示效果也会不好。<br>所以我们需要一种能够根据设备切换显示图片的技术。</p>
-<p><a href="http://www.cnblogs.com/qiuzhimutou/p/6115385.html" target="_blank" rel="noopener">响应式图片</a><br><a href="http://www.jianshu.com/p/235ef450f5e9" target="_blank" rel="noopener">响应式图片解决方案</a></p>
-<h2 id="结合使用picture标签和picturefill"><a href="#结合使用picture标签和picturefill" class="headerlink" title="结合使用picture标签和picturefill"></a>结合使用picture标签和picturefill</h2><p>使用srcset和sizes我感觉并不是一个好的设计，麻烦不说，也不够直观。下面介绍picture标签<br>picture标签内由多个source标签和一个img标签组成。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;picture&gt;</span><br><span class="line">	&lt;source meida=&quot;(max-width:750px)&quot; srcset=&quot;img/smaller.jpg&quot;&gt;</span><br><span class="line">	&lt;source meida=&quot;(orientation:landscope)&quot; srcset=&quot;img/smaller.jpg&quot;&gt;</span><br><span class="line">	&lt;source srcset=&quot;default.jpg&quot;&gt;</span><br><span class="line">	&lt;img src=&quot;default.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">&lt;/picture&gt;</span><br></pre></td></tr></table></figure></p>
-<p>浏览器会遍历picture中的项，然后将符合媒体查询的项的srcset代入img中。达到设置srcset的目的。source里除了可以使用媒体查询来匹配外，还可以使用type属性来匹配图片的格式等。<br>更详细的picture标签介绍<br><a href="http://www.w3cplus.com/html5/quick-tip-how-to-use-html5-picture-for-responsive-images.html" target="_blank" rel="noopener">HTML5 picture</a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture" target="_blank" rel="noopener">MDN picture</a></p>
-<h2 id="结合使用srcset和sizes属性"><a href="#结合使用srcset和sizes属性" class="headerlink" title="结合使用srcset和sizes属性"></a>结合使用srcset和sizes属性</h2><p>实现响应式图片的另一个方法是使用img图片的srcset属性。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-<p>srcset属性的值是，分隔的字符串列表，其中480w中的w表示图片宽度。这样写之后浏览器会根据算法自动选择要加载的图片，当然，如果浏览器判断已经加载了高精度的图片，会自动选用高精度的图片。</p>
-<p>上面的属性看起来并不那么好，比如当我们设置图片的宽度为视口宽度的50%，浏览器依然根据图片的宽度和视口的宽度选择图片，而我们需要的是根据图片的宽度和实际图片的容器的宽度来选择图片（比如视口810像素，选择加载800.png,而实际上图片容器只有405像素，我们需要的是460png）。</p>
-<p>我们需要更精确的控制图片的显示，这就需要sizes属性。<br>sizes属性的默认值为100vw(viewportwidth)。即图片按100%视口宽度显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;  sizes=&quot;30vw&quot;&gt;</span><br><span class="line">//表示根据30%视口宽度进行选择</span><br><span class="line">	</span><br><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;     sizes=&quot;(min-width:800px) 800px, 50vw&quot;&gt;</span><br><span class="line">//表示大于等于800px时，预估需要图片尺寸是800px,其他情况下为50%视口宽度。</span><br><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;  sizes=&quot;(min-width:800px) calc(100vw - 30em), 50vw&quot;&gt; </span><br><span class="line">//表示大于等于800px自动选用计算出的图片，其他情况下根据50%视口宽度选择。</span><br></pre></td></tr></table></figure></p>
-<p>sizes的值是一个字符串列表，每一项是有媒体查询+空格+图片预设宽度设置组成。媒体查询可省略，表示应用于所有。<br>总之，结合使用srcset和sizes可以切换和设置图片及图片尺寸。</p>
-<h2 id="通过cookie和服务器"><a href="#通过cookie和服务器" class="headerlink" title="通过cookie和服务器"></a>通过cookie和服务器</h2><p>将终端的屏幕信息写入cookie，然后根据cookie在服务器选择发送的图片。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/tags- css 响应式项目/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YunLong Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icode007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/01/tags- css 响应式项目/" itemprop="url">使用媒体查询构建响应式网站</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T22:17:48+08:00">
-                2017-05-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:17:48+08:00">
+                2017-03-27
               </time>
             
 
@@ -604,188 +473,6 @@ user-scalable=no 不允许用户缩放
 <p>not用于对媒体查询结果取反，not仅能用于整个查询，<br>only只有在匹配成功的情况下才用到，用于防止样式在老式浏览器中应用。<br>    如果使用了not或only，比如指明媒体类型<br>    逗号，表示或<br>更详尽的内容参照<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries#黑白（monochrome）" target="_blank" rel="noopener">MDN媒体查询</a></p>
 <hr>
 <p>总之，媒体查询就是css的一些新的语法规则，必要时参考规则进行使用。<br>其他参考： <a href="http://www.51xuediannao.com/html+css/htmlcssjq/css3_media.html" target="_blank" rel="noopener">css3媒体查询用法总结</a>。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/03/tags- 前端工具 Markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YunLong Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icode007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/03/tags- 前端工具 Markdown/" itemprop="url">Markdown简明教程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-03T12:00:00+08:00">
-                2017-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#Markdown教程</p>
-<p>##Markdown简介</p>
-<p>按照我的理解呢，所谓markdown其实是类似于txt或word的一种文本格式，保存为以.md结尾的文件。 比如：txt极其轻量级，但是很难格式化写作，word带有格式，功能强大，但是编辑器臃肿庞大，与轻量级相去甚远。</p>
-<p>总之，markdown就是一种使用几种特殊符号来表达格式的，比txt强大不少的，比html轻量不少的，易于学习的，很容易转换为html格式输出的，特殊格式的文本，在github，一些博客网站上广泛应用。</p>
-<p>##Markdown语法</p>
-<p>###标题</p>
-<p>使用1-6个#来表示标题，类似于html中标题标签（h1~h6）。#号和标题间最好加空格，这是标准写法。<br>    # 一级标题<br>    ## 二级标题<br>    。。。<br>    ######六级标题</p>
-<p>###列表<br>使用类似1. 2. 3.这样的前缀来表示列表。比如：</p>
-<ol>
-<li>apple</li>
-<li>banana</li>
-<li>orange</li>
-</ol>
-<p>使用-或*号来表示无序列表，比如:</p>
-<ul>
-<li>apple</li>
-<li>banana</li>
-<li>orange</li>
-</ul>
-<p>###引用<br>使用&gt;来表示引用,比如：</p>
-<blockquote>
-<p>黄河之水天上来，奔流到海不复回。</p>
-</blockquote>
-<p>###图片和链接<br>    使用<a href=""></a>来表示链接，使用<img src="" alt="">来表示图片。 其中[]中分别为链接显示文本或图片说明，()中为链接或图片地址。比如：</p>
-<p><a href="http://www.baidu.com" target="_blank" rel="noopener">百度</a></p>
-<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1505899069056&amp;di=f76a3fd8164e14682e48585620658641&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F1304%2F188.jpg" alt="图片说明"></p>
-<p>###粗体和斜体<br>使用<em>和**分别表示斜体和粗体，比如：
-</em>斜体<em><br><em>*粗体</em></em></p>
-<p>###分割线<br>使用<em>*</em>来表示分割线</p>
-<hr>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>使用<code>符号来引用代码(tab上面的键),比如:</code>function foo(){    console.log(‘hello’);}`</p>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>表格使用|管道号来表示，第一行为表头，使用|分隔，第3行往后为内容，也使用|来分隔。</p>
-<p>第二行表示表格的对齐方式。-表示默认的做对齐，-：表示右对齐。：-：表示居中对齐。比如：</p>
-<p><code>|name|zhangsan|xiaohua|pangpang|
-|-:|:-|:-:|
-|id|3456|1234|7986|
-|age|16|13|17|</code></p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th style="text-align:left">zhangsan</th>
-<th style="text-align:center">xiaohua</th>
-<th style="text-align:right">pangpang</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td style="text-align:left">3456</td>
-<td style="text-align:center">1234</td>
-<td style="text-align:right">7986</td>
-</tr>
-<tr>
-<td>age</td>
-<td style="text-align:left">16</td>
-<td style="text-align:center">13</td>
-<td style="text-align:right">17</td>
-</tr>
-</tbody>
-</table>
-<p>###markdown兼容html<br>在我看来，markdown就是一种轻量级的，使用符号代替标签的html，一些使用md无法表示的，可以直接使用html标签来书写。md编辑器足够智能来识别html。同时，所有的md格式也可以转化为html文档输出。当然有些标签书写时时需要注意的。可以参考  <a href="http://wowubuntu.com/markdown/#blockquote" target="_blank" rel="noopener">Markdown语法说明</a>.</p>
-<p>###转义字符<br>使用\来实现转义字符。比如#, *等。写到这里，突然有个问题，有了html，为什么还要markdown。</p>
 
           
         
@@ -968,7 +655,7 @@ user-scalable=no 不允许用户缩放
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/01/基于Github 和 hexo 搭建个人博客网站/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/11/tags- html 响应式图片/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YunLong Li">
@@ -987,7 +674,7 @@ user-scalable=no 不允许用户缩放
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/01/基于Github 和 hexo 搭建个人博客网站/" itemprop="url">基于Github和hexo搭建的博客网站</a></h1>
+                <a class="post-title-link" href="/2017/03/11/tags- html 响应式图片/" itemprop="url">响应式图片解决方案</a></h1>
         
 
         <div class="post-meta">
@@ -999,8 +686,8 @@ user-scalable=no 不允许用户缩放
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T12:17:48+08:00">
-                2017-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T12:00:00+08:00">
+                2017-03-11
               </time>
             
 
@@ -1039,14 +726,327 @@ user-scalable=no 不允许用户缩放
       
         
           
-            <h1 id="基于Github-和-hexo-搭建个人博客网站"><a href="#基于Github-和-hexo-搭建个人博客网站" class="headerlink" title="基于Github 和 hexo 搭建个人博客网站"></a>基于Github 和 hexo 搭建个人博客网站</h1><p>看到很多大牛都有自己的个人网站，觉得高端。今天仔细的看了下网上搭建个人博客网站的教程，发现使用别人的工具来构建一个自己的网站并不难，下面介绍如何以来github和hexo框架来完成。</p>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github可以说是程序员的神器，关键还免费。我们搭建个人网站就是基于Git上提供项目托管，而我们可以把博客项目放在Git上，然后通过在地址栏输入（owner名字.github.io）owner_name.github.io来访问博客主页。</p>
+            <h1 id="响应式图片解决方案"><a href="#响应式图片解决方案" class="headerlink" title="响应式图片解决方案"></a>响应式图片解决方案</h1><h2 id="使用响应式图片技术的原因"><a href="#使用响应式图片技术的原因" class="headerlink" title="使用响应式图片技术的原因"></a>使用响应式图片技术的原因</h2><p>随着响应式开发的流行，一套开发可以适应pc，平板，手机等多种终端设备，但是比如当我们在手机上依然使用pc端适用的高分辨率图的话，带来的流量的消耗是很多的，而且图片在小屏幕上缩小显示，会变得不清晰。如果使用小图的话，在高分辨率设备上又变得模糊。</p>
+<p>另外，苹果的ritina屏幕的像素比为2，这样一张图片在像素比为1的屏幕上正常显示，在ritina设备上显示效果也会不好。<br>所以我们需要一种能够根据设备切换显示图片的技术。</p>
+<p><a href="http://www.cnblogs.com/qiuzhimutou/p/6115385.html" target="_blank" rel="noopener">响应式图片</a><br><a href="http://www.jianshu.com/p/235ef450f5e9" target="_blank" rel="noopener">响应式图片解决方案</a></p>
+<h2 id="结合使用picture标签和picturefill"><a href="#结合使用picture标签和picturefill" class="headerlink" title="结合使用picture标签和picturefill"></a>结合使用picture标签和picturefill</h2><p>使用srcset和sizes我感觉并不是一个好的设计，麻烦不说，也不够直观。下面介绍picture标签<br>picture标签内由多个source标签和一个img标签组成。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;picture&gt;</span><br><span class="line">	&lt;source meida=&quot;(max-width:750px)&quot; srcset=&quot;img/smaller.jpg&quot;&gt;</span><br><span class="line">	&lt;source meida=&quot;(orientation:landscope)&quot; srcset=&quot;img/smaller.jpg&quot;&gt;</span><br><span class="line">	&lt;source srcset=&quot;default.jpg&quot;&gt;</span><br><span class="line">	&lt;img src=&quot;default.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">&lt;/picture&gt;</span><br></pre></td></tr></table></figure></p>
+<p>浏览器会遍历picture中的项，然后将符合媒体查询的项的srcset代入img中。达到设置srcset的目的。source里除了可以使用媒体查询来匹配外，还可以使用type属性来匹配图片的格式等。<br>更详细的picture标签介绍<br><a href="http://www.w3cplus.com/html5/quick-tip-how-to-use-html5-picture-for-responsive-images.html" target="_blank" rel="noopener">HTML5 picture</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture" target="_blank" rel="noopener">MDN picture</a></p>
+<h2 id="结合使用srcset和sizes属性"><a href="#结合使用srcset和sizes属性" class="headerlink" title="结合使用srcset和sizes属性"></a>结合使用srcset和sizes属性</h2><p>实现响应式图片的另一个方法是使用img图片的srcset属性。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>srcset属性的值是，分隔的字符串列表，其中480w中的w表示图片宽度。这样写之后浏览器会根据算法自动选择要加载的图片，当然，如果浏览器判断已经加载了高精度的图片，会自动选用高精度的图片。</p>
+<p>上面的属性看起来并不那么好，比如当我们设置图片的宽度为视口宽度的50%，浏览器依然根据图片的宽度和视口的宽度选择图片，而我们需要的是根据图片的宽度和实际图片的容器的宽度来选择图片（比如视口810像素，选择加载800.png,而实际上图片容器只有405像素，我们需要的是460png）。</p>
+<p>我们需要更精确的控制图片的显示，这就需要sizes属性。<br>sizes属性的默认值为100vw(viewportwidth)。即图片按100%视口宽度显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;  sizes=&quot;30vw&quot;&gt;</span><br><span class="line">//表示根据30%视口宽度进行选择</span><br><span class="line">	</span><br><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;     sizes=&quot;(min-width:800px) 800px, 50vw&quot;&gt;</span><br><span class="line">//表示大于等于800px时，预估需要图片尺寸是800px,其他情况下为50%视口宽度。</span><br><span class="line">&lt;img src=&quot;img/480.png&quot; srcset=&quot;img/480.png 480w, img/800.png 800w, img/1600.png 1600w&quot;  sizes=&quot;(min-width:800px) calc(100vw - 30em), 50vw&quot;&gt; </span><br><span class="line">//表示大于等于800px自动选用计算出的图片，其他情况下根据50%视口宽度选择。</span><br></pre></td></tr></table></figure></p>
+<p>sizes的值是一个字符串列表，每一项是有媒体查询+空格+图片预设宽度设置组成。媒体查询可省略，表示应用于所有。<br>总之，结合使用srcset和sizes可以切换和设置图片及图片尺寸。</p>
+<h2 id="通过cookie和服务器"><a href="#通过cookie和服务器" class="headerlink" title="通过cookie和服务器"></a>通过cookie和服务器</h2><p>将终端的屏幕信息写入cookie，然后根据cookie在服务器选择发送的图片。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/05/tags- 前端工具 Markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YunLong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/05/tags- 前端工具 Markdown/" itemprop="url">Markdown简明教程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T12:00:00+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#Markdown教程</p>
+<p>##Markdown简介</p>
+<p>按照我的理解呢，所谓markdown其实是类似于txt或word的一种文本格式，保存为以.md结尾的文件。 比如：txt极其轻量级，但是很难格式化写作，word带有格式，功能强大，但是编辑器臃肿庞大，与轻量级相去甚远。</p>
+<p>总之，markdown就是一种使用几种特殊符号来表达格式的，比txt强大不少的，比html轻量不少的，易于学习的，很容易转换为html格式输出的，特殊格式的文本，在github，一些博客网站上广泛应用。</p>
+<p>##Markdown语法</p>
+<p>###标题</p>
+<p>使用1-6个#来表示标题，类似于html中标题标签（h1~h6）。#号和标题间最好加空格，这是标准写法。<br>    # 一级标题<br>    ## 二级标题<br>    。。。<br>    ######六级标题</p>
+<p>###列表<br>使用类似1. 2. 3.这样的前缀来表示列表。比如：</p>
+<ol>
+<li>apple</li>
+<li>banana</li>
+<li>orange</li>
+</ol>
+<p>使用-或*号来表示无序列表，比如:</p>
+<ul>
+<li>apple</li>
+<li>banana</li>
+<li>orange</li>
+</ul>
+<p>###引用<br>使用&gt;来表示引用,比如：</p>
+<blockquote>
+<p>黄河之水天上来，奔流到海不复回。</p>
+</blockquote>
+<p>###图片和链接<br>    使用<a href=""></a>来表示链接，使用<img src="" alt="">来表示图片。 其中[]中分别为链接显示文本或图片说明，()中为链接或图片地址。比如：</p>
+<p><a href="http://www.baidu.com" target="_blank" rel="noopener">百度</a></p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1505899069056&amp;di=f76a3fd8164e14682e48585620658641&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F1304%2F188.jpg" alt="图片说明"></p>
+<p>###粗体和斜体<br>使用<em>和**分别表示斜体和粗体，比如：
+</em>斜体<em><br><em>*粗体</em></em></p>
+<p>###分割线<br>使用<em>*</em>来表示分割线</p>
+<hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>使用<code>符号来引用代码(tab上面的键),比如:</code>function foo(){    console.log(‘hello’);}`</p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>表格使用|管道号来表示，第一行为表头，使用|分隔，第3行往后为内容，也使用|来分隔。</p>
+<p>第二行表示表格的对齐方式。-表示默认的做对齐，-：表示右对齐。：-：表示居中对齐。比如：</p>
+<p><code>|name|zhangsan|xiaohua|pangpang|
+|-:|:-|:-:|
+|id|3456|1234|7986|
+|age|16|13|17|</code></p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th style="text-align:left">zhangsan</th>
+<th style="text-align:center">xiaohua</th>
+<th style="text-align:right">pangpang</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td style="text-align:left">3456</td>
+<td style="text-align:center">1234</td>
+<td style="text-align:right">7986</td>
+</tr>
+<tr>
+<td>age</td>
+<td style="text-align:left">16</td>
+<td style="text-align:center">13</td>
+<td style="text-align:right">17</td>
+</tr>
+</tbody>
+</table>
+<p>###markdown兼容html<br>在我看来，markdown就是一种轻量级的，使用符号代替标签的html，一些使用md无法表示的，可以直接使用html标签来书写。md编辑器足够智能来识别html。同时，所有的md格式也可以转化为html文档输出。当然有些标签书写时时需要注意的。可以参考  <a href="http://wowubuntu.com/markdown/#blockquote" target="_blank" rel="noopener">Markdown语法说明</a>.</p>
+<p>###转义字符<br>使用\来实现转义字符。比如#, *等。写到这里，突然有个问题，有了html，为什么还要markdown。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/03/基于Github 和 hexo 搭建个人博客网站/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YunLong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/03/基于Github 和 hexo 搭建个人博客网站/" itemprop="url">基于Github和Hexo搭建个人博客网站</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T12:17:48+08:00">
+                2017-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基于Github-和-hexo-搭建个人博客网站"><a href="#基于Github-和-hexo-搭建个人博客网站" class="headerlink" title="基于Github 和 hexo 搭建个人博客网站"></a>基于Github 和 hexo 搭建个人博客网站</h1><p>看到很多大牛都有自己的个人网站，觉得很高端。今天仔细的看了下网上关于搭建个人博客网站的教程，发现使用别人的工具来构建一个自己的网站并不难，下面介绍如何以来github和hexo框架来完成。</p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github可以说是程序员的神器，关键还免费。我们搭建个人网站就是基于Git上提供项目托管，而我们可以把博客项目放在Github上，然后通过在地址栏输入（owner名字.github.io）owner_name.github.io来访问博客主页。</p>
 <p>也就是说github提供了服务器加域名的功能，当然你也可以购买自己的.com,.cn等域名，只要把域名双向绑定就可以了。</p>
 <p>也可以购买服务器服务，当然那就不一定使用hexo框架了。</p>
 <h4 id="设置-Github"><a href="#设置-Github" class="headerlink" title="设置 Github"></a>设置 Github</h4><ul>
 <li><p>安装Git</p>
 </li>
-<li><p>到Github官网使用邮箱注册一个github账号。输入用户名，密码。验证，ok(已有git账户可跳过)。<br><a href="https://github.com/" target="_blank" rel="noopener">Github官网</a></p>
+<li><p>到Github官网使用邮箱注册一个github账号。输入用户名，密码。验证，ok(已有github账户可跳过)。<br><a href="https://github.com/" target="_blank" rel="noopener">Github官网</a></p>
 </li>
 <li><p>新建一个代码仓库(repository)，设置repository name 等于ownername.github.io (ownername即为注册时名字).</p>
 </li>
@@ -1069,6 +1069,7 @@ user-scalable=no 不允许用户缩放
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/leopardpan/leopardpan.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>上面repository对应的值为github上对应项目的ssh链接。</p>
 <p><code>npm install hexo-deployer-git --save //安装这个自动部署发布工具</code></p>
 <ul>
 <li><p>在source/_posts文件夹下新建.md文件，然后使用markdown写作。<br><code>hexo server 或 hexo s//启动本地服务器地址栏输入(https://localhost:4000 )查看效果</code></p>
@@ -1083,12 +1084,8 @@ user-scalable=no 不允许用户缩放
 <p>在地址栏输入 <a href="https://ownername.github.io查看效果" target="_blank" rel="noopener">https://ownername.github.io查看效果</a></p>
 <h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p>hexo 的nexT主题是非常受欢迎的一种主题，其说明文档也写的非常的好，可以根据文档下载，使用，设置nexT。</p>
 <p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">nexT文档</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://baixin.io/2015/08/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">HEXO搭建个人博客</a><br><a href="http://tc9011.com/2016/10/31/%E5%9F%BA%E4%BA%8EGithub%E5%92%8CHexo%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" target="_blank" rel="noopener">基于Github和Hexo的个人博客搭建</a><br><a href="http://www.jianshu.com/p/4eaddcbe4d12" target="_blank" rel="noopener">5分钟 搭建免费个人博客</a><br><a href="http://blog.csdn.net/tx874828503/article/details/51577815" target="_blank" rel="noopener">最简便的方法搭建Hexo+Github博客,基于Next主题</a></p>
-<h3 id="后期博客"><a href="#后期博客" class="headerlink" title="后期博客"></a>后期博客</h3><ul>
-<li>github使用手册</li>
-<li>Dos命令大全</li>
-<li>将自己的域名绑定到github.io</li>
-</ul>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">1. Hexo官方文档</a></p>
+<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">2. nexT主体官方文档</a></p>
 
           
         
