@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="使用媒体查询构建响应式网站响应式网站的概念现在很流行，其兴起来源于手机，平板等各种屏幕的智能终端的流行。 为了使网站代码适用各种屏幕（台式机，笔记本，平板，大屏手机，手机等），所有有了响应式网站的概念。 响应式网站的实现主要依赖于：弹性网格，弹性图片，媒体查询这3大技术。 使用媒体查询前元数据的设置css3设置meta标签为适应响应式设置做准备 &amp;lt;meta name=&amp;quot;viewpo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用媒体查询构建响应式网站">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/tags- css 响应式项目/index.html">
+<meta property="og:site_name" content="icode007">
+<meta property="og:description" content="使用媒体查询构建响应式网站响应式网站的概念现在很流行，其兴起来源于手机，平板等各种屏幕的智能终端的流行。 为了使网站代码适用各种屏幕（台式机，笔记本，平板，大屏手机，手机等），所有有了响应式网站的概念。 响应式网站的实现主要依赖于：弹性网格，弹性图片，媒体查询这3大技术。 使用媒体查询前元数据的设置css3设置meta标签为适应响应式设置做准备 &amp;lt;meta name=&amp;quot;viewpo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-01T11:38:02.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用媒体查询构建响应式网站">
+<meta name="twitter:description" content="使用媒体查询构建响应式网站响应式网站的概念现在很流行，其兴起来源于手机，平板等各种屏幕的智能终端的流行。 为了使网站代码适用各种屏幕（台式机，笔记本，平板，大屏手机，手机等），所有有了响应式网站的概念。 响应式网站的实现主要依赖于：弹性网格，弹性图片，媒体查询这3大技术。 使用媒体查询前元数据的设置css3设置meta标签为适应响应式设置做准备 &amp;lt;meta name=&amp;quot;viewpo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/tags- css 响应式项目/"/>
+
+
+
+
+
+  <title>使用媒体查询构建响应式网站 | icode007</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">icode007</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">keep studying, keep coding.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/tags- css 响应式项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用媒体查询构建响应式网站</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:17:48+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用媒体查询构建响应式网站"><a href="#使用媒体查询构建响应式网站" class="headerlink" title="使用媒体查询构建响应式网站"></a>使用媒体查询构建响应式网站</h1><p>响应式网站的概念现在很流行，其兴起来源于手机，平板等各种屏幕的智能终端的流行。 为了使网站代码适用各种屏幕（台式机，笔记本，平板，大屏手机，手机等），所有有了响应式网站的概念。</p>
+<p>响应式网站的实现主要依赖于：弹性网格，弹性图片，媒体查询这3大技术。</p>
+<h2 id="使用媒体查询前元数据的设置"><a href="#使用媒体查询前元数据的设置" class="headerlink" title="使用媒体查询前元数据的设置"></a>使用媒体查询前元数据的设置</h2><pre><code>css3设置meta标签为适应响应式设置做准备
+</code></pre><p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0 user-scalable=no&quot;&gt;</code></p>
+<pre><code>这段代码参数的解释：
+width=device-width 设置宽度等于当前设备宽度
+initial-scale 设置初始缩放比例为（默认值）1.0
+maximum-scale/minimum-scale 最大/最小缩放比例为1.0
+user-scalable=no 不允许用户缩放
+</code></pre><h2 id="解决IE8及以下浏览器兼容问题"><a href="#解决IE8及以下浏览器兼容问题" class="headerlink" title="解决IE8及以下浏览器兼容问题"></a>解决IE8及以下浏览器兼容问题</h2><pre><code>由于ie8及以下不支持h5,也不支持css3，所以使用条件注释及兼容性插件
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if lt IE 9]&gt;</span><br><span class="line">&lt;script src=&quot;...&quot;&gt;&lt;/script&gt; //使用html5shiv.js使得低版本兼容h5</span><br><span class="line">&lt;script src=&quot;...&quot;&gt;&lt;/script&gt; //使用respond.min.js兼容媒体查询</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="设置IE的渲染模式为使用最新模式渲染页面"><a href="#设置IE的渲染模式为使用最新模式渲染页面" class="headerlink" title="设置IE的渲染模式为使用最新模式渲染页面"></a>设置IE的渲染模式为使用最新模式渲染页面</h2><p><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</code></p>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><pre><code>媒体查询的两种使用方法
+1. 使用link标签
+</code></pre><p><code>&lt;link rel=&quot;style-sheet&quot; type=&quot;text/css&quot; media=&quot;screen and (orientation:portrait) href=&quot;style.css&quot;&gt;</code></p>
+<pre><code>其中media双引号内部内容为媒体查询条件，下面部分会详细介绍媒体查询语法。
+2. 在css样式中使用媒体查询(使用@media)，花括号中为css代码
+</code></pre><p><code>@media screen and (max-width:960px){}</code></p>
+<h2 id="媒体查询语法"><a href="#媒体查询语法" class="headerlink" title="媒体查询语法"></a>媒体查询语法</h2><p>媒体查询语法由一个可选的媒体类型和一个或多个表达式组成，当表达式链为真时，应用对应的css规则。<br>    如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@media screen and (max-width:960px)&#123;&#125;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; meida=&quot;screen and (max-width:960px)&quot; href=&quot;example.css&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="媒体类型"><a href="#媒体类型" class="headerlink" title="媒体类型"></a>媒体类型</h3><p>媒体类型一般是screen，还有all，print, tv, handheld等，也可以不写，不写的话为默认值all。</p>
+<p>注意： 当使用not或only操作符，媒体类型要写。</p>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p>表达式是使用()括起来的内容。括号内为媒体特征，注意：如果设备浏览器上不包含该特征，那么表达式一般返回假，比如(smfy:4),谁认识这是啥呀？返回假，下面是一些媒体特征。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(color)</span><br><span class="line">(min-color:4)</span><br><span class="line">(max-device-width:960px)</span><br><span class="line">(orientation:portrait)</span><br></pre></td></tr></table></figure></p>
+<p>更多内容参照 <a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries#黑白（monochrome）" target="_blank" rel="noopener">MDN媒体查询</a>。</p>
+<h3 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h3><p>媒体查询条件可以使用逻辑操作符号，and , not ,only 还有逗号，<br>and用于将多个条件连成一个，只有当都为真时为真<br><code>(min-width:960px) and (max-width:1440px)</code></p>
+<p>not用于对媒体查询结果取反，not仅能用于整个查询，<br>only只有在匹配成功的情况下才用到，用于防止样式在老式浏览器中应用。<br>    如果使用了not或only，比如指明媒体类型<br>    逗号，表示或<br>更详尽的内容参照<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries#黑白（monochrome）" target="_blank" rel="noopener">MDN媒体查询</a></p>
+<hr>
+<p>总之，媒体查询就是css的一些新的语法规则，必要时参考规则进行使用。<br>其他参考： <a href="http://www.51xuediannao.com/html+css/htmlcssjq/css3_media.html" target="_blank" rel="noopener">css3媒体查询用法总结</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/22/tags- css/" rel="next" title="css清除浮动">
+                <i class="fa fa-chevron-left"></i> css清除浮动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/03/tags- base64图片/" rel="prev" title="使用base64格式图片制作icon">
+                使用base64格式图片制作icon <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/favicon.ico"
+                alt="Yunlong Li" />
+            
+              <p class="site-author-name" itemprop="name">Yunlong Li</p>
+              <p class="site-description motion-element" itemprop="description">web前端,html,css,javascript,vue</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/icode007" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:li2467li@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用媒体查询构建响应式网站"><span class="nav-number">1.</span> <span class="nav-text">使用媒体查询构建响应式网站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用媒体查询前元数据的设置"><span class="nav-number">1.1.</span> <span class="nav-text">使用媒体查询前元数据的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决IE8及以下浏览器兼容问题"><span class="nav-number">1.2.</span> <span class="nav-text">解决IE8及以下浏览器兼容问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置IE的渲染模式为使用最新模式渲染页面"><span class="nav-number">1.3.</span> <span class="nav-text">设置IE的渲染模式为使用最新模式渲染页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询"><span class="nav-number">1.4.</span> <span class="nav-text">媒体查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询语法"><span class="nav-number">1.5.</span> <span class="nav-text">媒体查询语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体类型"><span class="nav-number">1.5.1.</span> <span class="nav-text">媒体类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式"><span class="nav-number">1.5.2.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑操作符"><span class="nav-number">1.5.3.</span> <span class="nav-text">逻辑操作符</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yunlong Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
