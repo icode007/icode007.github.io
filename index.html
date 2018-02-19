@@ -190,16 +190,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -228,6 +218,161 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/es6-箭头函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/10/es6-箭头函数/" itemprop="url">es6 - 箭头函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T19:00:00+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="es6-箭头函数"><a href="#es6-箭头函数" class="headerlink" title="es6 - 箭头函数"></a>es6 - 箭头函数</h1><p>哇，箭头函数…，听起来好NB，但是如果你知道它是因为使用了<code>=&gt;</code>这样类似箭头的符号 ，所以才叫箭头函数。 瞬间感觉：“呵，这名字起的…”。</p>
+<p>es6增加了箭头函数的特性当然不是为了装B，它可以看作是js中函数的一次进化。</p>
+<p>我们知道，在js中，函数有着不一样的地位，除了作为普通函数外，它可以用来构造自定义类型，作为对象的方法，通过调用bind方法得到一个新函数。在后三者的使用中，大多数情况下都要用到一个特性 this。</p>
+<p>函数中，this是动态绑定的，它的值是根据调用的上下文来确定的，关于函数的4种使用方式，书中都已经有了详细介绍，不再赘述。但是，this在带来强大能力的同时，也增加了编程错误的几率。即使是有经验的开发者，在使用this时，也可能因为疏忽而导致错误，而且，它会让代码更加难以理解。</p>
+<p>箭头函数，可以解决上面的问题。</p>
+<p>而且，箭头函数可以写的非常的简洁。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="箭头函数简洁的语法"><a href="#箭头函数简洁的语法" class="headerlink" title="箭头函数简洁的语法"></a>箭头函数简洁的语法</h3><p>程序员很懒的，我们热衷于各种脚本语言，语法糖。不就是因为他们能够让开发更有效率，让代码写的更少，更爽吗？箭头函数简化了函数的语法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(arg1, arg2, ...) =&gt; &#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是一个标准的箭头函数的写法，左边的()中填入函数参数，右边的{}中写入执行语句。</p>
+<p>当函数参数只有一个时，()可以省略。 当右边{}中只有单行语句时，{}可以省略。可能有下面这种形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let square = x =&gt; x*x ;</span><br></pre></td></tr></table></figure></p>
+<p>它相当于普通函数的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let square = function(x)&#123;</span><br><span class="line">    return x*x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>箭头函数的用法有以下几种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let sum = (num1, num2) =&gt; num1 + num2 ; //作为普通函数使用</span><br><span class="line"></span><br><span class="line">let arr2 = [1,2,3,4].map( item =&gt; item*2 ); //作为回调使用</span><br><span class="line"></span><br><span class="line">(() =&gt; &#123; //语句... &#125;)();                    //作为立即执行的匿名函数使用</span><br></pre></td></tr></table></figure></p>
+<h3 id="箭头函数中的this"><a href="#箭头函数中的this" class="headerlink" title="箭头函数中的this"></a>箭头函数中的this</h3><p>箭头函数与普通函数最大的不同就是this，前面已经讲过了，普通函数中this是根据上下文确定的。而在箭头函数中，没有this绑定。</p>
+<p>也就是说箭头函数的this的值不再根据调用时上下文确定，而是像普通变量那样根据定义时的作用域链进行查找。如果箭头函数外部是一个非箭头函数，箭头函数内部this的值就与该函数一致。 如果箭头函数外部是全局环境，那么this的值就是全局对象 - window(浏览器环境)或global(node环境)。<br>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var PageHandler = &#123;</span><br><span class="line">    id: &apos;123456&apos;,</span><br><span class="line">    init: function()&#123;</span><br><span class="line">        document.addEventListener(&quot;click&quot;,</span><br><span class="line">            event =&gt; this.doSomething(event.type), false);</span><br><span class="line">    &#125;,</span><br><span class="line">    doSomething: function(type)&#123;</span><br><span class="line">        console.log(&quot;Handling&quot; + type + &quot;for&quot; + this.id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在上面这段代码中，由于箭头函数中this与其外部init函数保持一致，因此，this保存的就是PageHandler对象的引用，所以可以调用doSomething方法。</p>
+<p>如果使用普通函数代替箭头函数，那么这样使用this会导致错误，因为这时this指向的document对象。 通用的解决方法是在init中保存this的引用<code>var _this = this</code>，然后使用_this代替this。</p>
+<h3 id="箭头函数的arguments"><a href="#箭头函数的arguments" class="headerlink" title="箭头函数的arguments"></a>箭头函数的arguments</h3><p>js函数中的arguments给了我们操作函数参数极大的便捷和灵活性。 但是，同this一样，在箭头函数中，没有arguments绑定。</p>
+<p>箭头函数中的arguments依然要根据定义时的作用域链进行查找。</p>
+<p>虽然，箭头函数中我们无法再使用arguments来操作函数参数， 但是我们可以使用es6中的剩余参数特性来获得同以前arguments同样的效果。比如： </p>
+<p><code>let sum = (...rest) =&gt; console.log(rest.length)</code></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>在使用箭头函数的简写形式时，要注意一点：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let getData = () =&gt; &#123;name: &apos;icode007&apos;, age: 27&#125;; //会报错</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>报错的原因是js把 =&gt;右边对象的{}当成了函数体的{}， 因此，要使用()把对象包裹起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let getData = () =&gt; (&#123;name: &apos;icode007&apos;, age: 27&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在箭头函数中，不仅仅是this，arguments没有绑定。<br>同样没有绑定的还有super：es6特性，super指向当前对象的原型对象，相当于Object.getPrototypeOf(this).call(this)</li>
+</ul>
+<p>new.target: es6特性，用于确定函数的使用方式，如果作为普通函数调用，该值等于undefined，如果作为构造函数调用，该值指向新创建对象实例的构造器。</p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p>箭头函数相比于普通函数有很多优势：代码简洁，性能更好，避免了this的问题等，因此可以大量使用。</p>
+<p>就个人感觉来讲，箭头函数更接近于函数的原本的能力。如果仅仅是想封装一段代码，或是作为回调函数使用，而不是用作构造函数，函数绑定等功能。使用箭头函数可以更好。总之，当你在函数中无需使用this时，使用箭头函数可能是更好的选择。</p>
+<p>箭头函数也有很多不适合的场景：<br>比如，作为方法使用时，不要使用箭头函数。不要为了过分追求代码的简洁而让函数变得难以阅读和理解等。 知乎这篇文章对箭头函数的一些不适合的场景进行了总结，可以作为参考。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/26540168" target="_blank" rel="noopener">什么时候不能使用箭头函数？：知乎</a></p>
+<p>可以关注我的专栏<a href="https://segmentfault.com/blog/icode007" target="_blank" rel="noopener">学习es6</a>, 打算对es6知识进行一下系统总结，欢迎共同学习。</p>
+<p>参考文献: <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">MDN: 箭头函数</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1574,137 +1719,13 @@ user-scalable=no 不允许用户缩放
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/09/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yunlong Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/favicon.ico">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icode007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/09/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-09T12:00:00+08:00">
-                2016-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1752,7 +1773,7 @@ user-scalable=no 不允许用户缩放
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
