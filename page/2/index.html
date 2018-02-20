@@ -232,6 +232,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/03/基于Github 和 hexo 搭建个人博客网站/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/03/基于Github 和 hexo 搭建个人博客网站/" itemprop="url">基于Github和Hexo搭建个人博客网站</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T12:17:48+08:00">
+                2017-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基于Github-和-hexo-搭建个人博客网站"><a href="#基于Github-和-hexo-搭建个人博客网站" class="headerlink" title="基于Github 和 hexo 搭建个人博客网站"></a>基于Github 和 hexo 搭建个人博客网站</h1><p>看到很多大牛都有自己的个人网站，觉得很高端。今天仔细的看了下网上关于搭建个人博客网站的教程，发现使用别人的工具来构建一个自己的网站并不难，下面介绍如何以来github和hexo框架来完成。</p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github可以说是程序员的神器，关键还免费。我们搭建个人网站就是基于Git上提供项目托管，而我们可以把博客项目放在Github上，然后通过在地址栏输入（owner名字.github.io）owner_name.github.io来访问博客主页。</p>
+<p>也就是说github提供了服务器加域名的功能，当然你也可以购买自己的.com,.cn等域名，只要把域名双向绑定就可以了。</p>
+<p>也可以购买服务器服务，当然那就不一定使用hexo框架了。</p>
+<h4 id="设置-Github"><a href="#设置-Github" class="headerlink" title="设置 Github"></a>设置 Github</h4><ul>
+<li><p>安装Git</p>
+</li>
+<li><p>到Github官网使用邮箱注册一个github账号。输入用户名，密码。验证，ok(已有github账户可跳过)。<br><a href="https://github.com/" target="_blank" rel="noopener">Github官网</a></p>
+</li>
+<li><p>新建一个代码仓库(repository)，设置repository name 等于ownername.github.io (ownername即为注册时名字).</p>
+</li>
+</ul>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>hexo其实就是一个基于Node.js的框架，将source文件夹下的.md和.html文件生成html文件。 然后使用git推送到github上。而html文件能被github pages解析。</p>
+<h4 id="安装，使用hexo"><a href="#安装，使用hexo" class="headerlink" title="安装，使用hexo"></a>安装，使用hexo</h4><ul>
+<li><p>安装Node.js <a href="http://nodejs.cn/download/" target="_blank" rel="noopener">Node.js</a></p>
+</li>
+<li><p>使用node的npm包管理工具安装hexo。注意：由于国内网络使用npm安装包速度一般较慢，所以可以使用一些镜像网站。比如taobao的镜像网站。<a href="https://npm.taobao.org/" target="_blank" rel="noopener">淘宝npm镜像</a>，这样在使用npm时可以用cnpm命令代替（可以查看说明文档）。</p>
+</li>
+</ul>
+<p><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<ul>
+<li><p>使用npm/cnpm安装 hexo-cli，-g全局安装。<br><code>npm install hexo-cli -g</code></p>
+</li>
+<li><p>安装了hexo后，我们就可以使用hexo命令来构建个人博客项目了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g: //DOS下进入相应要存放博客项目的目录，否则将在用户目录下</span><br><span class="line">hexo init blog //初始化项目，blog为构建的项目名称</span><br><span class="line">cd blog //进入项目文件夹</span><br><span class="line">npm install //安装依赖。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置项目下的_config.yml文件，配置title，deploy等各种配置。最重要的配置是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/leopardpan/leopardpan.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面repository对应的值为github上对应项目的ssh链接。</p>
+<p><code>npm install hexo-deployer-git --save //安装这个自动部署发布工具</code></p>
+<ul>
+<li><p>在source/_posts文件夹下新建.md文件，然后使用markdown写作。<br><code>hexo server 或 hexo s//启动本地服务器地址栏输入(https://localhost:4000 )查看效果</code></p>
+</li>
+<li><p>最后发布到我们的github pages</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以后每次写完md，使用命令<br><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d //上面命令的缩写</code>发布即可。</p>
+</li>
+</ul>
+<h3 id="hexo的几个常用命令"><a href="#hexo的几个常用命令" class="headerlink" title="hexo的几个常用命令"></a>hexo的几个常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成静态页面至public目录</span><br><span class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</span><br><span class="line">hexo deploy #将.deploy目录部署到GitHub</span><br><span class="line">hexo help  #查看帮助</span><br><span class="line">hexo version  #查看Hexo的版本</span><br><span class="line">hexo clean #清除缓存</span><br></pre></td></tr></table></figure>
+<p>在地址栏输入 <a href="https://ownername.github.io查看效果" target="_blank" rel="noopener">https://ownername.github.io查看效果</a></p>
+<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p>hexo 的nexT主题是非常受欢迎的一种主题，其说明文档也写的非常的好，可以根据文档下载，使用，设置nexT。</p>
+<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">nexT文档</a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">1. Hexo官方文档</a></p>
+<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">2. nexT主体官方文档</a></p>
+<p><a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">3. 使用Hexo + github搭建自己的博客</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/09/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -401,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -414,7 +581,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

@@ -232,6 +232,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/es6-函数扩展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/10/es6-函数扩展/" itemprop="url">es6 - 函数的扩展</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T21:30:00+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="es6-函数的扩展"><a href="#es6-函数的扩展" class="headerlink" title="es6 - 函数的扩展"></a>es6 - 函数的扩展</h1><p>上一篇，我们介绍了es6箭头函数的内容 - <a href="https://segmentfault.com/a/1190000013307378" target="_blank" rel="noopener">es6 - 箭头函数</a>。</p>
+<p>事实上，箭头函数只是函数扩展中最有意思的那部分，除此以外，es6函数还增加了一些其他的特性，下面将对它们进行一一介绍。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="es6函数参数的默认值"><a href="#es6函数参数的默认值" class="headerlink" title="es6函数参数的默认值"></a>es6函数参数的默认值</h3><p>在es6之前，我们如果想要设置函数参数的默认值，需要这样写代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function makeRequest(url, timeout, callback)&#123;</span><br><span class="line">    timeout = timeout || 2000;</span><br><span class="line">    callback = callback || function()&#123;&#125;;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者更加严谨的写法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timeout = (typeof timeout !== &apos;undefined&apos;) ? timeout : 2000;</span><br><span class="line">callback = (typeof callback !== &apos;undefined&apos;) ? callback : function()&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>es6增加了函数参数默认值的特性，可以直接在参数里设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function makeRequest(url, timeout = 2000, callback = function()&#123;&#125;)&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意：只有在没有传入相应的参数或是传入undefined时，才会使用参数的默认值。</p>
+<h3 id="es6剩余参数"><a href="#es6剩余参数" class="headerlink" title="es6剩余参数"></a>es6剩余参数</h3><p>剩余参数由三个点<code>...</code>和一个具名参数指定，比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function pick(object, ...keys)&#123;</span><br><span class="line">    console.log(keys);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个函数内部，剩余参数keys是由传入的第二个参数及以后的参数组成的数组。如果只传入0个或者1个参数，keys为空数组。</p>
+<h3 id="扩展运算符…"><a href="#扩展运算符…" class="headerlink" title="扩展运算符…"></a>扩展运算符…</h3><p>扩展运算符有点像是剩余参数的反作用。 我们使用一个场景来说明扩展运算符<code>...</code>该怎么使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function getMax(num1, num2)&#123;</span><br><span class="line">    let result = arguments[0];</span><br><span class="line">    for(var i=0; i&lt;arguments.length; i++)&#123;</span><br><span class="line">        if(arguments[i] &gt; result)&#123;</span><br><span class="line">            result = arguments[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面这个函数大概实现了返回参数中最大值的功能。我们可以这样调用它，<code>getMax(num1, num2, num3, ...)</code>。</p>
+<p>可是如果我现在想把一个很大的数组 arr 作为参数传入函数中呢？</p>
+<p>或许可以使用apply方法：<code>getMax.apply(null, arr);</code></p>
+<p>可是这样实现总感觉不大对劲，使用…能够使得代码意图更加清晰： <code>getMax(...arr)</code>。</p>
+<p><code>...</code>运算符能够将arr分割为单独的参数传入函数，它甚至还可以和其他参数一起使用：<br>比如： <code>getMax(num1, ...arr, num2)</code>。代码这样看起来好多了。</p>
+<h3 id="函数的名称属性"><a href="#函数的名称属性" class="headerlink" title="函数的名称属性"></a>函数的名称属性</h3><p>es6给所有的函数都添加了name属性，用来根据名称识别函数。匿名函数的name属性的值为空字符串。在实践中，该属性使用很少，不再赘述。</p>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><p>记得在js语言精粹中介绍递归部分时，作者说，js没有尾调用优化，所以递归可能因为堆栈溢出而运行失败。<br>在es6中，js提供了尾调用优化，什么是尾调用优化？可以参考下面代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function doSomething()&#123;</span><br><span class="line">    return doSomethingElse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的doSomethingElse函数的调用语句是doSomething的最后一条语句，并作为doSomething返回值返回。上面的函数就实现了尾调用优化。</p>
+<p>尾调用优化能够提高函数的性能。它最适合的使用场景是在递归中使用。</p>
+<p>在平时的开发中，除非使用递归或者是尽力优化函数的性能，否则无需考虑太多尾递归优化。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><p>使用剩余参数时，剩余参数在函数中最多只能有一个，并且要作为最后一个参数。</p>
+</li>
+<li><p>除了上面列举的外，es6函数还引入了new.target元属性。用来判断函数的调用方式，是作为普通函数调用，还是使用new作为构造函数调用。</p>
+</li>
+</ul>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p>es6新引入的默认参数和剩余参数特性都非常好用。推荐使用默认参数代替原来<code>arg1 = arg1 || 默认值</code> 的书写方式， 使用剩余参数代替arguments的能力来操作参数。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/es6-箭头函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1552,173 +1697,6 @@ user-scalable=no 不允许用户缩放
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/03/基于Github 和 hexo 搭建个人博客网站/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yunlong Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/favicon.ico">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icode007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/03/基于Github 和 hexo 搭建个人博客网站/" itemprop="url">基于Github和Hexo搭建个人博客网站</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T12:17:48+08:00">
-                2017-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="基于Github-和-hexo-搭建个人博客网站"><a href="#基于Github-和-hexo-搭建个人博客网站" class="headerlink" title="基于Github 和 hexo 搭建个人博客网站"></a>基于Github 和 hexo 搭建个人博客网站</h1><p>看到很多大牛都有自己的个人网站，觉得很高端。今天仔细的看了下网上关于搭建个人博客网站的教程，发现使用别人的工具来构建一个自己的网站并不难，下面介绍如何以来github和hexo框架来完成。</p>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github可以说是程序员的神器，关键还免费。我们搭建个人网站就是基于Git上提供项目托管，而我们可以把博客项目放在Github上，然后通过在地址栏输入（owner名字.github.io）owner_name.github.io来访问博客主页。</p>
-<p>也就是说github提供了服务器加域名的功能，当然你也可以购买自己的.com,.cn等域名，只要把域名双向绑定就可以了。</p>
-<p>也可以购买服务器服务，当然那就不一定使用hexo框架了。</p>
-<h4 id="设置-Github"><a href="#设置-Github" class="headerlink" title="设置 Github"></a>设置 Github</h4><ul>
-<li><p>安装Git</p>
-</li>
-<li><p>到Github官网使用邮箱注册一个github账号。输入用户名，密码。验证，ok(已有github账户可跳过)。<br><a href="https://github.com/" target="_blank" rel="noopener">Github官网</a></p>
-</li>
-<li><p>新建一个代码仓库(repository)，设置repository name 等于ownername.github.io (ownername即为注册时名字).</p>
-</li>
-</ul>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>hexo其实就是一个基于Node.js的框架，将source文件夹下的.md和.html文件生成html文件。 然后使用git推送到github上。而html文件能被github pages解析。</p>
-<h4 id="安装，使用hexo"><a href="#安装，使用hexo" class="headerlink" title="安装，使用hexo"></a>安装，使用hexo</h4><ul>
-<li><p>安装Node.js <a href="http://nodejs.cn/download/" target="_blank" rel="noopener">Node.js</a></p>
-</li>
-<li><p>使用node的npm包管理工具安装hexo。注意：由于国内网络使用npm安装包速度一般较慢，所以可以使用一些镜像网站。比如taobao的镜像网站。<a href="https://npm.taobao.org/" target="_blank" rel="noopener">淘宝npm镜像</a>，这样在使用npm时可以用cnpm命令代替（可以查看说明文档）。</p>
-</li>
-</ul>
-<p><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-<ul>
-<li><p>使用npm/cnpm安装 hexo-cli，-g全局安装。<br><code>npm install hexo-cli -g</code></p>
-</li>
-<li><p>安装了hexo后，我们就可以使用hexo命令来构建个人博客项目了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g: //DOS下进入相应要存放博客项目的目录，否则将在用户目录下</span><br><span class="line">hexo init blog //初始化项目，blog为构建的项目名称</span><br><span class="line">cd blog //进入项目文件夹</span><br><span class="line">npm install //安装依赖。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置项目下的_config.yml文件，配置title，deploy等各种配置。最重要的配置是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/leopardpan/leopardpan.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>上面repository对应的值为github上对应项目的ssh链接。</p>
-<p><code>npm install hexo-deployer-git --save //安装这个自动部署发布工具</code></p>
-<ul>
-<li><p>在source/_posts文件夹下新建.md文件，然后使用markdown写作。<br><code>hexo server 或 hexo s//启动本地服务器地址栏输入(https://localhost:4000 )查看效果</code></p>
-</li>
-<li><p>最后发布到我们的github pages</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>以后每次写完md，使用命令<br><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d //上面命令的缩写</code>发布即可。</p>
-</li>
-</ul>
-<h3 id="hexo的几个常用命令"><a href="#hexo的几个常用命令" class="headerlink" title="hexo的几个常用命令"></a>hexo的几个常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成静态页面至public目录</span><br><span class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</span><br><span class="line">hexo deploy #将.deploy目录部署到GitHub</span><br><span class="line">hexo help  #查看帮助</span><br><span class="line">hexo version  #查看Hexo的版本</span><br><span class="line">hexo clean #清除缓存</span><br></pre></td></tr></table></figure>
-<p>在地址栏输入 <a href="https://ownername.github.io查看效果" target="_blank" rel="noopener">https://ownername.github.io查看效果</a></p>
-<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p>hexo 的nexT主题是非常受欢迎的一种主题，其说明文档也写的非常的好，可以根据文档下载，使用，设置nexT。</p>
-<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">nexT文档</a></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">1. Hexo官方文档</a></p>
-<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">2. nexT主体官方文档</a></p>
-<p><a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">3. 使用Hexo + github搭建自己的博客</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1773,7 +1751,7 @@ user-scalable=no 不允许用户缩放
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1786,7 +1764,7 @@ user-scalable=no 不允许用户缩放
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
