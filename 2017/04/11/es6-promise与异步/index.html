@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="es6 javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="es6 promise与异步编程对于一些还不具备大量编程经验的朋友来说，promise可能是es6比较难以掌握的点。首先是很多名词，比如Promises，es6 Promise, 回调函数(callback)，Promise/A+，异步编程等。下面就首先介绍下这些名词的含义和区别。 所谓异步编程中的异步是相对于同步的概念的。js是单线程的语言，同一时间只能做一件事，为了指定一些稍后要执行的代码，我">
+<meta name="keywords" content="es6 javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es6 - promise">
+<meta property="og:url" content="http://yoursite.com/2017/04/11/es6-promise与异步/index.html">
+<meta property="og:site_name" content="icode007">
+<meta property="og:description" content="es6 promise与异步编程对于一些还不具备大量编程经验的朋友来说，promise可能是es6比较难以掌握的点。首先是很多名词，比如Promises，es6 Promise, 回调函数(callback)，Promise/A+，异步编程等。下面就首先介绍下这些名词的含义和区别。 所谓异步编程中的异步是相对于同步的概念的。js是单线程的语言，同一时间只能做一件事，为了指定一些稍后要执行的代码，我">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-07T22:51:29.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="es6 - promise">
+<meta name="twitter:description" content="es6 promise与异步编程对于一些还不具备大量编程经验的朋友来说，promise可能是es6比较难以掌握的点。首先是很多名词，比如Promises，es6 Promise, 回调函数(callback)，Promise/A+，异步编程等。下面就首先介绍下这些名词的含义和区别。 所谓异步编程中的异步是相对于同步的概念的。js是单线程的语言，同一时间只能做一件事，为了指定一些稍后要执行的代码，我">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/11/es6-promise与异步/"/>
+
+
+
+
+
+  <title>es6 - promise | icode007</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">icode007</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">keep studying, keep coding.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/es6-promise与异步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">es6 - promise</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T19:00:00+08:00">
+                2017-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="es6-promise与异步编程"><a href="#es6-promise与异步编程" class="headerlink" title="es6 promise与异步编程"></a>es6 promise与异步编程</h1><p>对于一些还不具备大量编程经验的朋友来说，promise可能是es6比较难以掌握的点。首先是很多名词，比如Promises，es6 Promise, 回调函数(callback)，Promise/A+，异步编程等。下面就首先介绍下这些名词的含义和区别。</p>
+<p>所谓异步编程中的异步是相对于同步的概念的。js是单线程的语言，同一时间只能做一件事，为了指定一些稍后要执行的代码，我们需要异步。在客户端，主要的异步方式有事件，setTimeout，Ajax等。Node的发展大大扩展了js语言的边界，我们知道，Node使用非阻塞IO模型，它使用回调函数模式来实现异步编程。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">readFile(&apos;example.txt&apos;, function(err, contents)&#123;</span><br><span class="line">    if(err)&#123; throw err; &#125;</span><br><span class="line">    console.log(contents);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&apos;Hi!&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中readFile的第二个参数就是回调函数。它会在读取完example.txt后被添加到执行队列中。上面代码的执行顺序是–执行readFile函数，在遇到读取文件时暂停，打印”Hi”，读取文件结束后将回调添加到作业队列中，执行回调函数，打印contents。</p>
+<p>本来呢，使用回调函数是能够完成异步编程的。但是随着代码的逻辑越复杂，这种异步编程方式越来越难以阅读和追踪程序错误，所以发展出了Promises规范来完成异步编程。</p>
+<p>Promises是一系列异步编程规范的统称。我们需要了解的是其中的Promise/A+规范。es6通过Promise这个内建对象实现了该规范。所以我们可以使用es6中的Promise对象来进行异步编程。</p>
+<p>下面将对es6中的Promise对象进行介绍。至于jQuery中延迟对象$.deferred()，根据规范自己实现promise和ES7的Async/Await异步方式等更多内容，后面会专门写一篇文章进行介绍。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="Promise的3种状态"><a href="#Promise的3种状态" class="headerlink" title="Promise的3种状态"></a>Promise的3种状态</h3><p>一个promise实例有3种状态，分别是：</p>
+<ul>
+<li>pending – 挂起，表示Promise结果还未知。</li>
+<li>fulfilled – 已完成， 表示Promise成功完成。</li>
+<li>rejected – 已拒绝，表示Promise未成功结束。</li>
+</ul>
+<p>promise处于这3种状态中的一种，并且可以由pending状态变为fulfilled状态，或由pending变为rejected状态。反之则不行。</p>
+<p>为了便于理解，下面将通过一个生活化的例子，来解释什么是Promise？</p>
+<p>Promise是允诺的意思。它就是一个关于未发生的事情的承诺。比如：</p>
+<p>你订了一份烧烤，店家说半个小时内送到，这就是一个Promise。现在，这个Promise还没有发生，所以可能半个小时内配送成功或者失败。对此，你预备了两种处理方式：成功 – 美滋滋的吃烧烤，失败 – 去楼下店里吃。</p>
+<p>在半个小时内，这个Promise处于pending状态，你正常上网，撸代码。一段时间后，这个promise就有了结果。是成功(fulfilled)或者失败(rejected)。根据这个结果，你之前的两种处理方式就会相应执行。这就是promise。</p>
+<p>对应的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">let promise = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    //等待店家送来中...</span><br><span class="line">    let result = &apos;配送成功&apos;? true : false;</span><br><span class="line">    if(result)&#123;</span><br><span class="line">        resolve(value);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        reject(reason);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(function(value)&#123;</span><br><span class="line">    //美滋滋吃烧烤...</span><br><span class="line">    //value为上面resolve()中传递的值, 比如共100块钱。</span><br><span class="line">&#125;, function(reason)&#123;</span><br><span class="line">    //叫上隔壁老王去楼下吃...</span><br><span class="line">    //reason为上面reject()的传递的原因，比如烤糊了...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>上面代码就是通过promise异步编程的代码。这里要注意的是Promise构造函数接收一个函数作为参数，函数内部是异步的逻辑。这个函数接收两个参数：resolve和reject。resolve()可以把promise推向fulfilled状态，reject()可以把promise推向rejected状态。</p>
+<p>promise有个then方法，用于处理promise成功或失败后的逻辑。then有两个参数：<br>参数1为promise成功时执行的函数，该函数的参数value对应于上面resolve(value)中的value值；<br>参数2为promise失败时执行的函数，该函数的参数reason对应于reject(reason)中的reason值，表示失败的原因。<br>一旦promise有了结果(成功或失败),就会执行对应then中的函数。</p>
+<h3 id="通过Promise处理Ajax的例子"><a href="#通过Promise处理Ajax的例子" class="headerlink" title="通过Promise处理Ajax的例子"></a>通过Promise处理Ajax的例子</h3><p>Ajax是客户端最常用的异步编程场景，下面一个例子演示了使用Promise进行Ajax操作的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function getData(method, url)&#123;</span><br><span class="line">  let promise = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    let xmlHttp = new XMLHttpRequest();</span><br><span class="line">    xmlHttp.open(method, url);</span><br><span class="line">    xmlHttp.send();</span><br><span class="line">    xmlHttp.onload = function () &#123;</span><br><span class="line">      if (this.status == 200 ) &#123;</span><br><span class="line">        resolve(this.response);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(this.statusText);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    xmlHttp.onerror = function () &#123;</span><br><span class="line">      reject(this.statusText);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;)</span><br><span class="line">  return promise;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getData(&apos;get&apos;,&apos;www.xxx.com&apos;).then(successFun, failFun);</span><br><span class="line"></span><br><span class="line">function successFun(value)&#123;</span><br><span class="line">  //Ajax成功处理函数...</span><br><span class="line">&#125;</span><br><span class="line">function failFun(reason)&#123;</span><br><span class="line">  //Ajax失败处理函数...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个已决的Promise"><a href="#创建一个已决的Promise" class="headerlink" title="创建一个已决的Promise"></a>创建一个已决的Promise</h3><p>前面的例子promise创建时，promise都处于pending状态，根据异步操作的结果将promise推向成功或失败状态。</p>
+<p>Promise类型有两个静态方法Promise.resolve(value)，Promise.reject(reason)可以分别创建已经是fulfilled和已经是rejected状态的promise。<br>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let promise = Promise.resolve(44);</span><br><span class="line">promise.then(function(value)&#123;</span><br><span class="line">  console.log(&apos;fulfilled&apos;, value);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>上面代码promise在被创建出来时，已经是fulfilled状态，接下来会直接将then中的回调函数加入到作业队列中，等待作业队列中前面的任务完成后执行该函数。</p>
+<p>这里传入Promise.resolve(value)和Promise.reject(reason)中的参数和之前Promise构造是对应的参数是一样的。</p>
+<h3 id="Promise-prototype-then-和Promise-prototype-catch"><a href="#Promise-prototype-then-和Promise-prototype-catch" class="headerlink" title="Promise.prototype.then()和Promise.prototype.catch()"></a>Promise.prototype.then()和Promise.prototype.catch()</h3><p>上面已经演示过promise实例上then方法的用法，每一个promise实例还具有catch方法。</p>
+<p>catch()方法只处理reject的情况，他的行为与调用Promise.prototype.then(undefined, onRejected)相同。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let p = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    //...</span><br><span class="line">    reject(new Error(&apos;something wrong!&apos;))</span><br><span class="line">&#125;)</span><br><span class="line">p.catch(function(reason)&#123;</span><br><span class="line">    //拒绝</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>上面catch方法中的回调在promise被reject时调用。</p>
+<h3 id="then-和catch-的返回值"><a href="#then-和catch-的返回值" class="headerlink" title="then()和catch()的返回值"></a>then()和catch()的返回值</h3><p>每次对then()或catch()的调用都会返回另一个promise，这也是很多代码可以写成类似链式调用的原因。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">let p1 = new Promise(function(resolve, reject)&#123;</span><br><span class="line">  resolve(42);</span><br><span class="line">&#125;);</span><br><span class="line">let p2 = p1.then(function(value)&#123;</span><br><span class="line">  console.log(value);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p2.then(function()&#123;</span><br><span class="line">  console.log(&quot;Finished&quot;);</span><br><span class="line">&#125;, function()&#123;</span><br><span class="line">    console.log(&apos;something wrong!&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p1 == p2 // false，注意：p1.then()会返回一个新的promise，所以p1与p2并不相等</span><br><span class="line"></span><br><span class="line">//可以写成链式调用的形式，比如</span><br><span class="line">p1.then(function(value)&#123;</span><br><span class="line">  console.log(value)</span><br><span class="line">&#125;).then(function()&#123;</span><br><span class="line">  console.log(&apos;do something&apos;);</span><br><span class="line">&#125;).then(function()&#123;</span><br><span class="line">  console.log(&apos;Finished&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在上面代码中，p1.then()返回了一个promise为p2, 那么p2的状态和p1之间有什么关系呢？</p>
+<p>更具体一点说，当p1变为fulfilled时，p1.then()返回的p2是什么状态呢？二者有什么联系呢？</p>
+<p>p2的行为与p1.then()中回调函数的返回值有关：</p>
+<ul>
+<li><p>如果then中的回调函数抛出一个错误，或者回调函数中调用reject(reason),那么then返回的Promise将会成为拒绝状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。</p>
+</li>
+<li><p>如果then中的回调函数返回一个值，那么then返回的Promise将会成为接受状态，并且将返回的值作为接受状态的回调函数的参数值。</p>
+</li>
+<li><p>如果then中的回调函数返回一个已经是接受状态的Promise，那么then返回的Promise也会成为接受状态，并且将那个Promise的接受状态的回调函数的参数值作为该被返回的Promise的接受状态回调函数的参数值。</p>
+</li>
+<li><p>如果then中的回调函数返回一个已经是拒绝状态的Promise，那么then返回的Promise也会成为拒绝状态，并且将那个Promise的拒绝状态的回调函数的参数值作为该被返回的Promise的拒绝状态回调函数的参数值。</p>
+</li>
+<li><p>如果then中的回调函数返回一个未定状态（pending）的Promise，那么then返回Promise的状态也是未定的，并且它的终态与那个Promise的终态相同；同时，它变为终态时调用的回调函数参数与那个Promise变为终态时的回调函数的参数是相同的。</p>
+</li>
+<li><p>如果then中的回调函数无显式的返回值，并且也没有调用reject()，那么返回的Promise为接收状态。</p>
+</li>
+</ul>
+<h3 id="Promise-all-处理多个promise"><a href="#Promise-all-处理多个promise" class="headerlink" title="Promise.all()处理多个promise"></a>Promise.all()处理多个promise</h3><p>Promise内建对象上的静态方法Promise.all()用于处理多个promise的情况。</p>
+<p>Promise.all([promise1, promise2,…])返回一个promise的实例，接收一个promise组成的数组为参数。只有当数组内的promise都成功时，才会调用对应的then中的成功处理函数，只要有一个不成功，那么调用对应的拒绝处理函数。</p>
+<p>依然使用前面那么订烧烤的例子，你不仅订了烧烤，还在另一家订了啤酒。打算等到烧烤和啤酒都配送成功后一起吃，美滋滋~~。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([订烧烤，订啤酒]).then(function(value)&#123;</span><br><span class="line">    //吃烧烤，喝啤酒...</span><br><span class="line">&#125;, function(reason)&#123;</span><br><span class="line">    //拒绝的原因，烤糊了或者啤酒卖完了...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这里要注意的一点是，对于数组中的promise，只要有任一个promise为拒绝，那么就会立即执行then中的拒绝处理函数，并不会等待其他promise的结果。只有当所有promise的结果都成功时，才执行then中的成功处理函数。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var p1 = new Promise(function(resolve, reject)&#123;</span><br><span class="line">  setTimeout(function()&#123;</span><br><span class="line">    console.log(&apos;A&apos;);</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;, 1000)</span><br><span class="line">&#125;);</span><br><span class="line">var p2 = Promise.reject(new Error(&apos;error&apos;));</span><br><span class="line">var p3 = new Promise(function(resolve, reject)&#123;</span><br><span class="line">  setTimeout(function()&#123;</span><br><span class="line">    console.log(&apos;B&apos;);</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;, 0)</span><br><span class="line">&#125;);</span><br><span class="line">Promise.all([p1,p2,p3]).then(function(value)&#123;</span><br><span class="line">  console.log(&apos;success!&apos;);</span><br><span class="line">&#125;, function(reason)&#123;</span><br><span class="line">  console.log(&apos;failed&apos;);</span><br><span class="line">&#125;)</span><br><span class="line">//结果为failed B  A</span><br></pre></td></tr></table></figure></p>
+<p>由于p2为已拒绝状态的promise，所以Promise.all()立即变为拒绝状态，打印failed，p1和p2会继续执行，但对于Promise.all()的结果没有影响。</p>
+<h3 id="Promise-race-处理多个promise"><a href="#Promise-race-处理多个promise" class="headerlink" title="Promise.race()处理多个promise"></a>Promise.race()处理多个promise</h3><p>Promise内建对象上的静态方法Promise.race()同样用于处理多个promise的情况。同样返回一个Promise，同样接收一个promise数组作为参数。</p>
+<p>与all不同的地方在于，数组中的promise就像在赛跑一样(race)，并且只关心第一名的情况，只要有其中一个promise有了结果，Promise.race()的状态就会立即与该promise相同。<br>数组中其他promise继续执行，但对于Promise.race()的结果没有影响。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><p>我们构造promise实例的代码是立即执行的，而then方法中的回调函数是异步调用的，在promise的状态变为成功或拒绝时，才会把相应的处理函数添加到promise工作队列中。并且该函数会先于setTimeout执行。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var promise = new Promise(function(resolve, reject)&#123;</span><br><span class="line">  console.log(&apos;A&apos;);</span><br><span class="line">  resolve(&apos;C&apos;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">console.log(&apos;B&apos;);</span><br><span class="line"></span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">  console.log(&apos;D&apos;);</span><br><span class="line">&#125;,0)</span><br><span class="line"></span><br><span class="line">promise.then(function(value)&#123;</span><br><span class="line">  console.log(value)</span><br><span class="line">&#125;);</span><br><span class="line">//打印A, B, C, D</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果then方法中传入的参数被忽略，或者是非函数，比如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">p.then(function(value)&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;)</span><br><span class="line">//或者</span><br><span class="line">p.then(undefined, function(reason)&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>那么，相应的回调处理函数被忽略，then方法返回的promise会保留上一个promise的状态和参数。最典型的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var p = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    reject(new Error(&apos;error&apos;));</span><br><span class="line">&#125;)</span><br><span class="line">p.then(function(value)&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;).then(function(value)&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;).then(undefined, function(reason)&#123;</span><br><span class="line">    console.log(reason);</span><br><span class="line">&#125;)</span><br><span class="line">//打印&apos;error&apos;</span><br></pre></td></tr></table></figure></p>
+<p>p的前两次then调用的拒绝处理函数被忽略，然后reject状态和错误信息就一直往后传递，直到被最后一次then调用捕获。</p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p>关于Promise的知识点很多，但是最常用的场景就是Ajax。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function getData(method, url)&#123;</span><br><span class="line">  var promise = new Promise(function(resolve, reject)&#123;</span><br><span class="line">    //Ajax获取数据的代码...</span><br><span class="line">    if(success)&#123;</span><br><span class="line">      resolve(response)</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      reject(statusText)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return promise;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getData(&apos;get&apos;,&apos;www.xxx.com&apos;).then(Fun1).then(Fun2).then(Fun3).catch(function(reason)&#123;</span><br><span class="line">  //错误处理逻辑...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>更多关于es6的内容，可以关注右侧我的专栏–学习ES6。</p>
+<p>参考：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">MDN Javascript Promise</a>.<br><a href="https://segmentfault.com/a/1190000007678185" target="_blank" rel="noopener">Promise介绍-基础篇</a>.<br>《深入理解ES6》– Promise与异步编程。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/es6-javascript/" rel="tag"># es6 javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/10/es6-函数扩展/" rel="next" title="es6 - 函数的扩展">
+                <i class="fa fa-chevron-left"></i> es6 - 函数的扩展
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/favicon.ico"
+                alt="Yunlong Li" />
+            
+              <p class="site-author-name" itemprop="name">Yunlong Li</p>
+              <p class="site-description motion-element" itemprop="description">web前端,html,css,javascript,vue</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/icode007" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:li2467li@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#es6-promise与异步编程"><span class="nav-number">1.</span> <span class="nav-text">es6 promise与异步编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise的3种状态"><span class="nav-number">1.1.1.</span> <span class="nav-text">Promise的3种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过Promise处理Ajax的例子"><span class="nav-number">1.1.2.</span> <span class="nav-text">通过Promise处理Ajax的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个已决的Promise"><span class="nav-number">1.1.3.</span> <span class="nav-text">创建一个已决的Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-then-和Promise-prototype-catch"><span class="nav-number">1.1.4.</span> <span class="nav-text">Promise.prototype.then()和Promise.prototype.catch()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#then-和catch-的返回值"><span class="nav-number">1.1.5.</span> <span class="nav-text">then()和catch()的返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-all-处理多个promise"><span class="nav-number">1.1.6.</span> <span class="nav-text">Promise.all()处理多个promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-race-处理多个promise"><span class="nav-number">1.1.7.</span> <span class="nav-text">Promise.race()处理多个promise</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">1.2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">1.3.</span> <span class="nav-text">最佳实践</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yunlong Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
