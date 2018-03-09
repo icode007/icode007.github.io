@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="es6 javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="es6 类-class与大多正规的面向对象编程语言不同(比如java)，js在创建之初就不支持类。js的面向对象编程实现方式是通过构造函数和原型来实现的。 我之前以为es6引入类的概念将会带给这门语言极大的改变。后来才发现es6类的特性只是一种语法糖，使得js创建自定义类型和传统的面向对象语言语法上更为相似，其内部机理和之前构造函数-原型模式本质上是一样的。但是，es6 类的特性依然是值得掌握的，">
+<meta name="keywords" content="es6 javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es6 - 类">
+<meta property="og:url" content="http://yoursite.com/2017/04/13/es6-类-class/index.html">
+<meta property="og:site_name" content="icode007">
+<meta property="og:description" content="es6 类-class与大多正规的面向对象编程语言不同(比如java)，js在创建之初就不支持类。js的面向对象编程实现方式是通过构造函数和原型来实现的。 我之前以为es6引入类的概念将会带给这门语言极大的改变。后来才发现es6类的特性只是一种语法糖，使得js创建自定义类型和传统的面向对象语言语法上更为相似，其内部机理和之前构造函数-原型模式本质上是一样的。但是，es6 类的特性依然是值得掌握的，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-08T10:09:05.927Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="es6 - 类">
+<meta name="twitter:description" content="es6 类-class与大多正规的面向对象编程语言不同(比如java)，js在创建之初就不支持类。js的面向对象编程实现方式是通过构造函数和原型来实现的。 我之前以为es6引入类的概念将会带给这门语言极大的改变。后来才发现es6类的特性只是一种语法糖，使得js创建自定义类型和传统的面向对象语言语法上更为相似，其内部机理和之前构造函数-原型模式本质上是一样的。但是，es6 类的特性依然是值得掌握的，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/13/es6-类-class/"/>
+
+
+
+
+
+  <title>es6 - 类 | icode007</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">icode007</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">keep studying, keep coding.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/es6-类-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">es6 - 类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-13T19:00:00+08:00">
+                2017-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="es6-类-class"><a href="#es6-类-class" class="headerlink" title="es6 类-class"></a>es6 类-class</h1><p>与大多正规的面向对象编程语言不同(比如java)，js在创建之初就不支持类。js的面向对象编程实现方式是通过构造函数和原型来实现的。</p>
+<p>我之前以为es6引入类的概念将会带给这门语言极大的改变。后来才发现es6类的特性只是一种语法糖，使得js创建自定义类型和传统的面向对象语言语法上更为相似，其内部机理和之前构造函数-原型模式本质上是一样的。但是，es6 类的特性依然是值得掌握的，它使得js语言更加的严谨，消除了一些可能导致出错的状况。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>类的创建依赖于class和constructor两个关键字，下面介绍下类创建的语法。</p>
+<h3 id="创建自定义类型"><a href="#创建自定义类型" class="headerlink" title="创建自定义类型"></a>创建自定义类型</h3><p>看下面一段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    constructor(name, age)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    sayName()&#123;</span><br><span class="line">        console.log(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码使用class创建了一个自定义类型Person，constructor是这个类的构造器，sayName是类的公共方法。它和下面一段代码是等价的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.sayName = function()&#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>二者在使用上完全相同，比如：创建一个Person的实例 <code>new Person(&#39;icode007&#39;)</code>等。一些小的差别主要有下面几点：</p>
+<ul>
+<li><p>使用class创建的类只能使用new来调用，而后者可以作为普通函数调用。</p>
+</li>
+<li><p>class没有声明提升，后者作为函数会有声明提升。</p>
+</li>
+<li><p>类声明中的代码自动运行在严格模式下。</p>
+</li>
+<li><p>类的所有方法都是不可枚举的。</p>
+</li>
+</ul>
+<h3 id="类表达式"><a href="#类表达式" class="headerlink" title="类表达式"></a>类表达式</h3><p>与函数类似，类也具有两种形式，类声明和类表达式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let Person = class&#123;</span><br><span class="line">    constructor(name, age)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    sayName()&#123;</span><br><span class="line">        console.log(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let person = new Person(&apos;icode007&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>类表达式在使用上与类声明几乎没有区别。</p>
+<h3 id="类的访问器属性"><a href="#类的访问器属性" class="headerlink" title="类的访问器属性"></a>类的访问器属性</h3><p>使用get和set关键字可以为类定义访问器属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let Person = class&#123;</span><br><span class="line">    constructor(firstname, lastname)&#123;</span><br><span class="line">        this.firstname = firstname;</span><br><span class="line">        this.lastname = lastname;</span><br><span class="line">    &#125;</span><br><span class="line">    get fullname()&#123;</span><br><span class="line">        return this.firstname + this.lastname;</span><br><span class="line">    &#125;</span><br><span class="line">    set fullname(name)&#123;</span><br><span class="line">        var arr = name.split(&apos; &apos;);</span><br><span class="line">        this.firstname = arr[0];</span><br><span class="line">        this.lastname = arr[arr.length - 1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let person = new Person(&apos;nicholas&apos;, &apos;zakas&apos;);</span><br><span class="line">console.log(person.fullname);</span><br></pre></td></tr></table></figure></p>
+<h3 id="类的静态成员"><a href="#类的静态成员" class="headerlink" title="类的静态成员"></a>类的静态成员</h3><p>要定义类的静态方法，只需要在公共方法定义前加static关键字即可。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let Person = class&#123;</span><br><span class="line">    constructor(firstname, lastname)&#123;</span><br><span class="line">        this.firstname = firstname;</span><br><span class="line">        this.lastname = lastname;</span><br><span class="line">    &#125;</span><br><span class="line">    static getFullname()&#123;</span><br><span class="line">        return this.firstname + this.lastname;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要使用该静态方法，需要直接在类上调用，比如<code>Person.getFullname()</code>。</p>
+<h3 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h3><p>es6的类使用extends来实现继承。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Rectangle&#123;</span><br><span class="line">    constructor(length,width)&#123;</span><br><span class="line">        this.length = length;</span><br><span class="line">        this.width = width;</span><br><span class="line">    &#125;</span><br><span class="line">    getArea()&#123;</span><br><span class="line">        return this.length * this.width;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Square extends Rectangle &#123;</span><br><span class="line">    constructor(length)&#123;</span><br><span class="line">        super(length, length);</span><br><span class="line">    &#125;</span><br><span class="line">    getPerimeter()&#123;</span><br><span class="line">        return this.length * 4;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var sqr = new Square(5);</span><br><span class="line">console.log(sqr.getArea()</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，类Square继承了Rectangle类，所以实例sqr同样具有getArea()方法。 同时sqr添加了自己的getPerimeter方法。并重写了构造器constructor。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>在使用类继承的实现中，需要注意的点是：</p>
+<ul>
+<li><p>如果子类没有重写constructor方法，默认会调用父类的构造器方法。</p>
+</li>
+<li><p>如果重写了constructor方法，那么需要显式的调用父类的构造器方法，即<code>super(arg...)</code>，并且super()调用一定要放到构造器的最前面(准确的说是在使用this前需要调用super)。</p>
+</li>
+<li><p>父类的静态成员同样会被继承到子类上。</p>
+</li>
+</ul>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p>es6的类的语法比较易于掌握，推荐在实际开发中，多使用class来创建自定义类型。 首先会使关于类的信息都包裹在一个class{}中，也会使得js中的类与其他语言的类的语法更加的统一。</p>
+<p>更多关于es6的内容，可以关注右侧专栏 - 学习ES6。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/es6-javascript/" rel="tag"># es6 javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/11/es6-promise与异步/" rel="next" title="es6 - promise">
+                <i class="fa fa-chevron-left"></i> es6 - promise
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/favicon.ico"
+                alt="Yunlong Li" />
+            
+              <p class="site-author-name" itemprop="name">Yunlong Li</p>
+              <p class="site-description motion-element" itemprop="description">web前端,html,css,javascript,vue</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/icode007" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:li2467li@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#es6-类-class"><span class="nav-number">1.</span> <span class="nav-text">es6 类-class</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建自定义类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">创建自定义类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类表达式"><span class="nav-number">1.1.2.</span> <span class="nav-text">类表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的访问器属性"><span class="nav-number">1.1.3.</span> <span class="nav-text">类的访问器属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的静态成员"><span class="nav-number">1.1.4.</span> <span class="nav-text">类的静态成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的继承"><span class="nav-number">1.1.5.</span> <span class="nav-text">类的继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">1.2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">1.3.</span> <span class="nav-text">最佳实践</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yunlong Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
