@@ -232,6 +232,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/11/webpack-babel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/11/webpack-babel/" itemprop="url">webpack - babel</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T21:00:00+08:00">
+                2017-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="webpack-babel"><a href="#webpack-babel" class="headerlink" title="webpack - babel"></a>webpack - babel</h1><p>babel是一个javascript编译器，是前端开发中的一个利器。它突破了浏览器实现es标准的限制，使我们在开发中可以使用最新的javascript语法。</p>
+<p>通过构建和babel，可以使用最新js语法进行开发，最后自动编译成用于浏览器或node环境的代码。</p>
+<h2 id="webpack中使用babel"><a href="#webpack中使用babel" class="headerlink" title="webpack中使用babel"></a>webpack中使用babel</h2><p>配合webpack使用babel前，需要首先使用<code>npm init</code>初始化一个项目，<code>npm install -g webpack</code>安装webpack（全局安装是为了在命令行使用webpack命令）。</p>
+<ul>
+<li><p>安装babel-loader, babel-core, babel-preset-env。<br><code>npm install --save-dev babel-loader babel-core babel-preset-env</code><br>其中，babel-preset-env插件是为了告诉babel只编译批准的内容，相当于babel-preset-es2015, es2016, es2017及最新版本。通过它可以使用最新的js语法。</p>
+</li>
+<li><p>配置webpack.config.js<br>在webpack配置文件中配置bable-loader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">        &#123;</span><br><span class="line">            test: /\.js$/,</span><br><span class="line">            use: &#123;</span><br><span class="line">                loader: &apos;babel-loader&apos;,</span><br><span class="line">                options: &#123;</span><br><span class="line">                    presets: [</span><br><span class="line">                        [&apos;env&apos;,&#123;</span><br><span class="line">                            targets: &#123;</span><br><span class="line">                                browsers: [&apos;&gt; 1%&apos;, &apos;last 2 versions&apos;]</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;]</span><br><span class="line">                    ]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            exclude: &apos;/node_modules/&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其中，exclude是定义不希望babel处理的文件。targets是presets的一些预设选项，这里表示将js用于浏览器，只确保占比大于1%的浏览器的特性，主流浏览器的最新两个主版本。<br>更多与配置有关的信息，可以参考：<br><a href="https://babeljs.cn/docs/plugins/preset-env/" target="_blank" rel="noopener">babel env preset设置</a>,<br><a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener">browserlist预设置</a>.</p>
+<ul>
+<li><p>在命令行中运行相应webpack命令即可。</p>
+</li>
+<li><p>由于babel-preset配置选项较多，我们一般可以在根目录下建立.babelrc文件，专门用来放置babel preset配置，这是一个json文件。可以将上述配置修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//.bablerc文件</span><br><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;: [</span><br><span class="line">        [&apos;env&apos;,&#123;</span><br><span class="line">            &quot;targets&quot;: &#123;</span><br><span class="line">                &quot;browsers&quot;: [&apos;&gt; 1%&apos;, &apos;last 2 versions&apos;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//原webpack.config.js文件</span><br><span class="line">module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">        &#123;</span><br><span class="line">            test: /\.js$/,</span><br><span class="line">            use: &#123;</span><br><span class="line">                loader: &apos;babel-loader&apos;</span><br><span class="line">            &#125;,</span><br><span class="line">            exclude: &apos;/node_modules/&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="babel-polifill插件"><a href="#babel-polifill插件" class="headerlink" title="babel-polifill插件"></a>babel-polifill插件</h2><p>在上面的babel配置中，babel只是将一些es6，es7-8的语法转换成符合目标的js代码，但是如果我们使用一些特性或方法，比如Generator, Set, 或者一些方法。babel并不能转换为低版本浏览器识别的代码。这时就需要babel-polifill。</p>
+<p>简单的说，polifill就是一个垫片，提供了一些低版本es标准对高级特性的实现。使用polifill的方法如下：</p>
+<p><code>npm install --save babel-polifill</code></p>
+<p>然后在应用入口引入polifill，要确保它在任何其他代码/依赖声明前被调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//CommonJS module</span><br><span class="line">require(&apos;babel-polyfill&apos;);</span><br><span class="line"></span><br><span class="line">//es module</span><br><span class="line">import &apos;babel-polifill&apos;;</span><br></pre></td></tr></table></figure>
+<p>在webpack.config.js中，将babel-polifill加入entry数组中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">entry: [&quot;babel-polifill&quot;, &quot;./app.js&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>相比于runtime-transform，polifill用于应用开发中。会添加相应变量到全局，所以会污染全局变量。</p>
+<p>更多细节参考<a href="https://babeljs.cn/docs/usage/polyfill/" target="_blank" rel="noopener">babel-polifill</a>。</p>
+<p>##runtime-transform插件<br>runtime transform也是一个插件，它与polifill有些类似，但它不污染全局变量，所以经常用于框架开发。</p>
+<p>安装：<br><code>npm install --save-dev bable-plugin-transform-runtime</code></p>
+<p><code>npm install --save bable-runtime</code></p>
+<p>用法：<br>将下面内容添加到.bablerc文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;plugins&quot;: [&quot;transform-runtime&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更多细节参考<a href="https://babeljs.cn/docs/plugins/transform-runtime/" target="_blank" rel="noopener">bable-runtime-transform插件</a>。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/es6-类-class/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1589,140 +1739,6 @@ user-scalable=no 不允许用户缩放
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/tags- css/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yunlong Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/favicon.ico">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icode007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/22/tags- css/" itemprop="url">css清除浮动</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T12:00:00+08:00">
-                2017-03-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="css清除浮动"><a href="#css清除浮动" class="headerlink" title="css清除浮动"></a>css清除浮动</h1><p>css中的浮动真是令人又爱又恨，因为通过它可以实现一些布局，但是浮动又会带来很多的麻烦。</p>
-<p>使用flex同样可以代替浮动实现布局，但是ie8,9 不支持。</p>
-<h2 id="目前通用的清除浮动的方法"><a href="#目前通用的清除浮动的方法" class="headerlink" title="目前通用的清除浮动的方法"></a>目前通用的清除浮动的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after&#123;</span><br><span class="line">    content: &apos;.&apos;;</span><br><span class="line">    display: block;</span><br><span class="line">    height: 0;</span><br><span class="line">    clear: both;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix&#123;</span><br><span class="line">    zoom: 1;//为了兼容IE6，IE7，不要求的话可以不写</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="更优雅的方法"><a href="#更优雅的方法" class="headerlink" title="更优雅的方法"></a>更优雅的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">.clearfix:bofore,这行代码对于清除浮动不是必须的，这样写是可以防止顶部的空白崩溃，比如防止该盒子的margin-top与上一个盒子的margin-bottom发生的margin值的叠加。</span><br><span class="line">*/</span><br><span class="line">.clearfix:before,</span><br><span class="line">.clearfix:after&#123;</span><br><span class="line">    content: &apos; &apos;;</span><br><span class="line">    display: table;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix:after&#123;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="其他清除浮动的方法1"><a href="#其他清除浮动的方法1" class="headerlink" title="其他清除浮动的方法1"></a>其他清除浮动的方法1</h2><p>以前的代码中，清除浮动比较常用的方法是在浮动元素的容器元素后添加代码：<br><code>&lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;</code></p>
-<pre><code>这种方法的弊端是违背了提倡的结构与表现分离原则。后期代码维护也较麻烦。
-</code></pre><h2 id="其他清除浮动方法2"><a href="#其他清除浮动方法2" class="headerlink" title="其他清除浮动方法2"></a>其他清除浮动方法2</h2><p>清除浮动的第2种方法给容器添加overflow属性，如<br><code>overflow:auto</code> 或 <code>overflow:hidden</code></p>
-<pre><code>当添加了这样的overflow属性后，浮动元素又会回到了容器元素中。达到清理浮动的效果。
-</code></pre><h2 id="其他清除浮动方法3"><a href="#其他清除浮动方法3" class="headerlink" title="其他清除浮动方法3"></a>其他清除浮动方法3</h2><p>清除浮动的第3种方法是给容器元素设置float属性，让容器元素也浮动起来。但是，这样方法并没有彻底的解决问题。后续元素要一直浮动下去。</p>
-<h2 id="css中的BFC"><a href="#css中的BFC" class="headerlink" title="css中的BFC"></a>css中的BFC</h2><p>所谓bfc就是块级格式化上下文，更详细的bfc的介绍<br><a href="http://web.jobbole.com/84808/" target="_blank" rel="noopener">什么是BFC</a></p>
-<pre><code>bfc和清除浮动的关系可以理解为：
-
-属性值和方法只要触发了bfc，就可以清除浮动。
-比如:float(不是none),overflow(not visible)
-,display(table-caption,table-cell,inline-block),position(fixed,absolute)等。上述清除浮动的方法都可以理解为触发为了bfc。
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1777,7 +1793,7 @@ user-scalable=no 不允许用户缩放
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1790,7 +1806,7 @@ user-scalable=no 不允许用户缩放
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

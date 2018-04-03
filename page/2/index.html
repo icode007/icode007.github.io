@@ -232,6 +232,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/tags- css/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yunlong Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icode007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/22/tags- css/" itemprop="url">css清除浮动</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T12:00:00+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="css清除浮动"><a href="#css清除浮动" class="headerlink" title="css清除浮动"></a>css清除浮动</h1><p>css中的浮动真是令人又爱又恨，因为通过它可以实现一些布局，但是浮动又会带来很多的麻烦。</p>
+<p>使用flex同样可以代替浮动实现布局，但是ie8,9 不支持。</p>
+<h2 id="目前通用的清除浮动的方法"><a href="#目前通用的清除浮动的方法" class="headerlink" title="目前通用的清除浮动的方法"></a>目前通用的清除浮动的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after&#123;</span><br><span class="line">    content: &apos;.&apos;;</span><br><span class="line">    display: block;</span><br><span class="line">    height: 0;</span><br><span class="line">    clear: both;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix&#123;</span><br><span class="line">    zoom: 1;//为了兼容IE6，IE7，不要求的话可以不写</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="更优雅的方法"><a href="#更优雅的方法" class="headerlink" title="更优雅的方法"></a>更优雅的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">.clearfix:bofore,这行代码对于清除浮动不是必须的，这样写是可以防止顶部的空白崩溃，比如防止该盒子的margin-top与上一个盒子的margin-bottom发生的margin值的叠加。</span><br><span class="line">*/</span><br><span class="line">.clearfix:before,</span><br><span class="line">.clearfix:after&#123;</span><br><span class="line">    content: &apos; &apos;;</span><br><span class="line">    display: table;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix:after&#123;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他清除浮动的方法1"><a href="#其他清除浮动的方法1" class="headerlink" title="其他清除浮动的方法1"></a>其他清除浮动的方法1</h2><p>以前的代码中，清除浮动比较常用的方法是在浮动元素的容器元素后添加代码：<br><code>&lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;</code></p>
+<pre><code>这种方法的弊端是违背了提倡的结构与表现分离原则。后期代码维护也较麻烦。
+</code></pre><h2 id="其他清除浮动方法2"><a href="#其他清除浮动方法2" class="headerlink" title="其他清除浮动方法2"></a>其他清除浮动方法2</h2><p>清除浮动的第2种方法给容器添加overflow属性，如<br><code>overflow:auto</code> 或 <code>overflow:hidden</code></p>
+<pre><code>当添加了这样的overflow属性后，浮动元素又会回到了容器元素中。达到清理浮动的效果。
+</code></pre><h2 id="其他清除浮动方法3"><a href="#其他清除浮动方法3" class="headerlink" title="其他清除浮动方法3"></a>其他清除浮动方法3</h2><p>清除浮动的第3种方法是给容器元素设置float属性，让容器元素也浮动起来。但是，这样方法并没有彻底的解决问题。后续元素要一直浮动下去。</p>
+<h2 id="css中的BFC"><a href="#css中的BFC" class="headerlink" title="css中的BFC"></a>css中的BFC</h2><p>所谓bfc就是块级格式化上下文，更详细的bfc的介绍<br><a href="http://web.jobbole.com/84808/" target="_blank" rel="noopener">什么是BFC</a></p>
+<pre><code>bfc和清除浮动的关系可以理解为：
+
+属性值和方法只要触发了bfc，就可以清除浮动。
+比如:float(不是none),overflow(not visible)
+,display(table-caption,table-cell,inline-block),position(fixed,absolute)等。上述清除浮动的方法都可以理解为触发为了bfc。
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/11/tags- html 响应式图片/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -881,7 +1015,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -894,7 +1028,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
